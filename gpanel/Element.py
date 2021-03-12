@@ -1,9 +1,13 @@
 class Element:
     def __init__(self, panel):
+        self._panel = panel
         self._canvas = panel._canvas
 
+    def _coords(self):
+        return self._panel._p(self._raw_coords())
+
     def _update_coords(self):
-        self._canvas.coords(self._id, self._coords)
+        self._canvas.coords(self._id, self._coords())
 
     @property
     def x(self):

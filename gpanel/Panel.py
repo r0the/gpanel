@@ -2,6 +2,8 @@ import tkinter
 from .Element import Element
 from .Circle import Circle
 from .Line import Line
+from .Rectangle import Rectangle
+from .EventHandler import EventHandler
 
 class Panel:
     def __init__(self, width, height):
@@ -11,8 +13,13 @@ class Panel:
         self._root = tkinter.Tk()
         self._canvas = tkinter.Canvas(self._root, width=width, height=height)
         self._canvas.pack()
-        self._fillcolor = "red"
+        self._handler = EventHandler()
+        self._fillcolor = "black"
         self._pencolor = "black"
+        self._canvas.bind("<Motion>", self._motion)
+
+    def _motion(self, event):
+        self._handler.on_mouse_move(self, self._px(event.x), self._py(event.y))
 
     def coordinates(self, minx, miny, maxx, maxy):
         dx = maxx - minx
@@ -30,6 +37,11 @@ class Panel:
     def background(self, value):
         self._canvas.config(background=value)
 
+    def bind(self, event, handler):
+        if not event in self._events:
+            self_events[event] = []
+        self._events[event].append(handler)
+
     def color(self, value):
         self._fillcolor = value
         self._pencolor = value
@@ -43,33 +55,27 @@ class Panel:
     def circle(self, x, y, radius):
         return Circle(self, x, y, radius)
 
-    def line(self, *args):
-        if len(args) == 2:
-            x1 = args[0][0]
-            y1 = args[0][1]
-            x2 = args[1][0]
-            y2 = args[1][1]
-        elif len(args) == 4:
-            x1 = args[0]
-            y1 = args[1]
-            x2 = args[2]
-            y2 = args[3]
-        else:
-            raise ValueError("Ungültige Anzahl Argumente")
+    def line(self, x1, y1, x2, y2):
         return Line(self, x1, y1, x2, y2)
+
+    def rectangle(self, x1, y1, x2, y2):
+        return Rectangle(self, x1, y1, x2, y2)
 
     def start(self):
         self._root.mainloop()
 
-    def _w(self, points):
+    def update(self):
+        self._canvas.update()
+
+    def _p(self, points):
         result = []
         for p in points:
-            result.append(self._wx(p[0]))
-            result.append(self._wy(p[1]))
+            result.append(self._px(p[0]))
+            result.append(self._py(p[1]))
         return result
 
-    def _wx(self, x):
+    def _px(self, x):
         return (x - self._minx) * self._scalex
 
-    def _wy(self, y):
+    def _py(self, y):
         return self._height - (self._miny - y) * self._scaley

@@ -4,7 +4,7 @@ from .Panel import Panel
 from time import sleep
 
 __global_panel = None
-    
+
 def create_gpanel(*args):
     global __global_panel
     width = 600
@@ -29,5 +29,20 @@ def coordinates(minx, miny, maxx, maxy):
 def circle(x, y, radius):
     __gp().circle(x, y, radius)
 
-def line(*args):
-    __gp().line(*args)
+def pencolor(c):
+    __gp().pencolor(c)
+
+def fillcolor(c):
+    __gp().fillcolor(c)
+
+def color(c):
+    __gp().color(c)
+
+def line(x1, y1, x2, y2):
+    __gp().line(x1, y1, x2, y2)
+
+def rectangle(x1, y1, x2, y2):
+    __gp().rectangle(x1, y1, x2, y2)
+
+def event(handler):
+    __gp().bind(handler)

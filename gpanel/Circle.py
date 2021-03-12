@@ -2,23 +2,22 @@ from .Element import Element
 
 class Circle(Element):
     def __init__(self, panel, x, y, radius):
+        Element.__init__(self, panel)
         self._panel = panel
-        self._radius = radius
         self._x = x
         self._y = y
+        self._radius = radius
         self._id = panel._canvas.create_oval(
-            self._coords,
+            self._coords(),
             fill=panel._fillcolor,
             outline=panel._pencolor)
-        panel._canvas.update()
-        Element.__init__(self, panel)
+        panel.update()
 
-    @property
-    def _coords(self):
+    def _raw_coords(self):
         r = self._radius
         x = self._x
         y = self._y
-        return self._panel._w([(x - r, y - r), (x + r, y + r)])
+        return [(x - r, y - r), (x + r, y + r)]
 
     @property
     def radius(self):
