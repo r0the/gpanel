@@ -5,6 +5,14 @@ from .Line import Line
 from .Rectangle import Rectangle
 from .EventHandler import EventHandler
 
+def rgbtohex(r, g, b):
+    return f"#{r:02x}{g:02x}{b:02x}"
+
+def convert_color(arg):
+    if isinstance(arg, tuple):
+         return rgbtohex(arg[0], arg[1], arg[2])
+    return arg
+
 class Panel:
     def __init__(self, width, height):
         self._width = width
@@ -37,20 +45,18 @@ class Panel:
     def background(self, value):
         self._canvas.config(background=value)
 
-    def bind(self, event, handler):
-        if not event in self._events:
-            self_events[event] = []
-        self._events[event].append(handler)
+    def bind(self, handler):
+        self._handler(handler)
 
-    def color(self, value):
-        self._fillcolor = value
-        self._pencolor = value
+    def color(self, *args):
+        self._fillcolor = convert_color(args)
+        self._pencolor = convert_color(args)
 
-    def fillcolor(self, value):
-        self._fillcolor = value
+    def fillcolor(self, *args):
+        self._fillcolor = convert_color(args)
 
-    def pencolor(self, value):
-        self._pencolor = value
+    def pencolor(self, *args):
+        self._pencolor = convert_color(args)
 
     def circle(self, x, y, radius):
         return Circle(self, x, y, radius)

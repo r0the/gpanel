@@ -29,14 +29,14 @@ def coordinates(minx, miny, maxx, maxy):
 def circle(x, y, radius):
     __gp().circle(x, y, radius)
 
-def pencolor(c):
-    __gp().pencolor(c)
+def pencolor(*args):
+    __gp().pencolor(*args)
 
-def fillcolor(c):
-    __gp().fillcolor(c)
+def fillcolor(*args):
+    __gp().fillcolor(*args)
 
-def color(c):
-    __gp().color(c)
+def color(*args):
+    __gp().color(*args)
 
 def line(x1, y1, x2, y2):
     __gp().line(x1, y1, x2, y2)
