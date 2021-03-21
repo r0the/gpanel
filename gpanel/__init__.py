@@ -50,3 +50,5 @@ def rectangle(x, y, width, height):
 def event(handler):
     __gp().bind(handler)
 
+def update():
+    __gp().update()
