@@ -30,7 +30,7 @@ def bounds():
     return __gp().bounds()
 
 def circle(x, y, radius):
-    __gp().circle(x, y, radius)
+    return __gp().circle(x, y, radius)
 
 def pencolor(*args):
     __gp().pencolor(*args)
@@ -42,10 +42,10 @@ def color(*args):
     __gp().color(*args)
 
 def line(x1, y1, x2, y2):
-    __gp().line(x1, y1, x2, y2)
+    return __gp().line(x1, y1, x2, y2)
 
 def rectangle(x, y, width, height):
-    __gp().rectangle(x, y, width, height)
+    return __gp().rectangle(x, y, width, height)
 
 def event(handler):
     __gp().bind(handler)
