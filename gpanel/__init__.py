@@ -26,6 +26,9 @@ def __gp():
 def coordinates(minx, miny, maxx, maxy):
     __gp().coordinates(minx, miny, maxx, maxy)
 
+def bounds():
+    return __gp().bounds()
+
 def circle(x, y, radius):
     __gp().circle(x, y, radius)
 

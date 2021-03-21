@@ -4,6 +4,7 @@ from .Circle import Circle
 from .Line import Line
 from .Rectangle import Rectangle
 from .EventHandler import EventHandler
+from .Rect import Rect
 
 def rgbtohex(r, g, b):
     return f"#{r:02x}{g:02x}{b:02x}"
@@ -30,12 +31,7 @@ class Panel:
         self._handler.on_mouse_move(self, self._px(event.x), self._py(event.y))
 
     def coordinates(self, minx, miny, maxx, maxy):
-        dx = maxx - minx
-        dy = miny - maxy
-        self._minx = minx
-        self._miny = miny
-        self._scalex = self._width / dx
-        self._scaley = self._height / dy
+        self._bounds = Rect(minx, miny, maxx - minx, maxy - miny)
 
     @property
     def background(self):
@@ -44,6 +40,9 @@ class Panel:
     @background.setter
     def background(self, value):
         self._canvas.config(background=value)
+
+    def bounds(self):
+        return self._bounds
 
     def bind(self, handler):
         self._handler(handler)
@@ -81,7 +80,9 @@ class Panel:
         return result
 
     def _px(self, x):
-        return (x - self._minx) * self._scalex
+        b = self._bounds
+        return (x - b.left) * (self._width / b.width)
 
     def _py(self, y):
-        return self._height - (self._miny - y) * self._scaley
+        b = self._bounds
+        return self._height - (y - b.bottom) * (self._height / b.height)
