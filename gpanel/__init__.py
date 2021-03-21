@@ -44,8 +44,9 @@ def color(*args):
 def line(x1, y1, x2, y2):
     __gp().line(x1, y1, x2, y2)
 
-def rectangle(x1, y1, x2, y2):
-    __gp().rectangle(x1, y1, x2, y2)
+def rectangle(x, y, width, height):
+    __gp().rectangle(x, y, width, height)
 
 def event(handler):
     __gp().bind(handler)
+

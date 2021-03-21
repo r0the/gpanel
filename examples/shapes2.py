@@ -9,4 +9,4 @@ for i in range(80):
     width = randrange(10, 30)
     height = randrange(5, 30)
     color(randrange(0, 256), randrange(0, 256), randrange(0, 246))
-    rectangle(x, y, x + width, y + height) 
+    rectangle(x, y, width, height) 

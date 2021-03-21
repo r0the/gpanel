@@ -63,8 +63,8 @@ class Panel:
     def line(self, x1, y1, x2, y2):
         return Line(self, x1, y1, x2, y2)
 
-    def rectangle(self, x1, y1, x2, y2):
-        return Rectangle(self, x1, y1, x2, y2)
+    def rectangle(self, x, y, width, height):
+        return Rectangle(self, x, y, width, height)
 
     def start(self):
         self._root.mainloop()
