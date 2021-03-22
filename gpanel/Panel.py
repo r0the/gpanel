@@ -25,6 +25,7 @@ class Panel:
         self._root = tkinter.Tk()
         self._canvas = tkinter.Canvas(self._root, width=width, height=height)
         self._canvas.pack()
+        self.title("gpanel")
         self._handler = EventHandler()
         self._fillcolor = "black"
         self._pencolor = "black"
@@ -71,6 +72,9 @@ class Panel:
 
     def start(self):
         self._root.mainloop()
+
+    def title(self, title):
+        self._root.title(title)
 
     def update(self):
         self._canvas.update()

@@ -1,5 +1,6 @@
 from gpanel import *
 
+title("Schachbrett")
 coordinates(0, 0, 8, 8)
 
 for i in range(8):

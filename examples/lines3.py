@@ -10,6 +10,7 @@ def draw_lines():
             if p != q:
                 line(p[0], p[1], q[0], q[1])
 
+title("Graph")
 coordinates(0, 0, 10, 10)
 corners = [(2, 3), (5, 2), (8, 5), (6, 8), (3, 7)]
 draw_corners()

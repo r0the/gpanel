@@ -47,6 +47,9 @@ def line(x1, y1, x2, y2):
 def rectangle(x, y, width, height):
     return __gp().rectangle(x, y, width, height)
 
+def title(title):
+    __gp().title(title)
+
 def event(handler):
     __gp().bind(handler)
 
