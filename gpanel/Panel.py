@@ -1,3 +1,4 @@
+import copy
 import tkinter
 from .Element import Element
 from .Circle import Circle
@@ -42,7 +43,7 @@ class Panel:
         self._canvas.config(background=value)
 
     def bounds(self):
-        return self._bounds
+        return copy.copy(self._bounds)
 
     def bind(self, handler):
         self._handler(handler)
