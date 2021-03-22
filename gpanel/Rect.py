@@ -5,6 +5,9 @@ class Rect:
         self._width = width
         self._height = height
 
+    def __copy__(self):
+        return Rect(self._left, self._right, self._width, self._height)
+
     def __repr__(self):
         return "<%s (left: %s, bottom: %s, width: %s, height: %s)>" % (
             self.__class__.__name__, self._left, self._bottom, self._width, self._height)
