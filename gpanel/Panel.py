@@ -1,5 +1,6 @@
 import copy
 import tkinter
+import time
 from .Element import Element
 from .Circle import Circle
 from .Line import Line
@@ -19,6 +20,7 @@ class Panel:
     def __init__(self, width, height):
         self._width = width
         self._height = height
+        self._delay = 1 / 60
         self.coordinates(0.0, 0.0, 1.0, 1.0)
         self._root = tkinter.Tk()
         self._canvas = tkinter.Canvas(self._root, width=width, height=height)
@@ -72,6 +74,7 @@ class Panel:
 
     def update(self):
         self._canvas.update()
+        time.sleep(self._delay)
 
     def _p(self, points):
         result = []
